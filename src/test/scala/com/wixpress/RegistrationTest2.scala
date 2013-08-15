@@ -3,14 +3,13 @@ package com.wixpress
 import org.specs2.mutable.SpecificationWithJUnit
 import org.specs2.mock.Mockito
 import org.specs2.specification.Scope
-import org.specs2.matcher.{AlwaysMatcher, Matcher}
 
 /**
  * @author shaiyallin
  * @since 8/12/13
  */
 
-class RegistrationTest extends SpecificationWithJUnit with Mockito {
+class RegistrationTest2 extends SpecificationWithJUnit with Mockito {
 
   trait Context extends Scope with RegistrationModule
     with UserModuleSupport with CryptographyModuleSupport {

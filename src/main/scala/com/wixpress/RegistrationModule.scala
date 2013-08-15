@@ -19,7 +19,7 @@ trait RegistrationModule { this: UserModule with CryptographyModule =>
 
 trait UserModule {
 
-  val userDao: UserDao = null
+  val userDao: UserDao
 
   trait UserDao {
     def insert(user: User)
@@ -32,7 +32,7 @@ trait UserModule {
 
 trait CryptographyModule {
 
-  val digester: PasswordDigester = null
+  val digester: PasswordDigester
 
   trait PasswordDigester {
     def digest(password: String): String

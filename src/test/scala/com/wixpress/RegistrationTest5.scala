@@ -5,26 +5,26 @@ import org.specs2.mock.Mockito
 import org.specs2.specification.Scope
 
 /**
+ * This test adds a custom Matcher for our User, providing better abstractions
+ * over internal implementation details of our SUT
+ *
  * @author shaiyallin
  * @since 8/12/13
  */
 
-class RegistrationTest2 extends SpecificationWithJUnit with Mockito {
+class RegistrationTest5 extends SpecificationWithJUnit with Mockito {
 
   trait Context extends Scope with RegistrationModule
     with UserModuleSupport with CryptographyModuleSupport {
 
     val registrar = new UserRegistrar {}
 
-    def aRequestWith(email: String = "me@my.org", password: String = "123456") =
-      RegistrationRequest(email, password)
-
   }
 
   "user registration" should {
     "insert a user into the database" in new Context {
       val email = "me@my.org"
-      val request = aRequestWith(email = email)
+      val request = RegistrationRequest(email = email, password = "")
 
       registrar.register(request)
 
@@ -38,7 +38,7 @@ class RegistrationTest2 extends SpecificationWithJUnit with Mockito {
       val digestedPassword = "abcd"
       digester.digest(password) returns digestedPassword
 
-      registrar.register(aRequestWith(password = password))
+      registrar.register(RegistrationRequest(email = "me@my.org", password = password))
 
       there was one(userDao).insert(aUserWith(
         password = equalTo(digestedPassword)
@@ -51,7 +51,8 @@ class RegistrationTest2 extends SpecificationWithJUnit with Mockito {
         new DuplicateUserEmailException(email)
 
       registrar.register(
-        aRequestWith(email = email)) must throwA[DuplicateUserEmailException]
+        RegistrationRequest(email = email, password = "")) must
+          throwA[DuplicateUserEmailException]
     }
   }
 }

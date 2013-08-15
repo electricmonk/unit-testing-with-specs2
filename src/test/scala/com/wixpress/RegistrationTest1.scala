@@ -4,10 +4,11 @@ import org.junit.Test
 import org.mockito.Mockito._
 
 /**
+ * This test demonstrates the most naive usage of JUnit to test a Cake Pattern-based app
+ *
  * @author shaiyallin
  * @since 8/15/13
  */
-
 class RegistrationTest1 extends RegistrationModule
     with UserModule with CryptographyModule {
 

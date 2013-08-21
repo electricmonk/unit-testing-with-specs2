@@ -1,6 +1,6 @@
 package com.wixpress
 
-import org.junit.Test
+import org.junit.{Before, Test}
 import org.mockito.Mockito._
 
 /**
@@ -18,6 +18,10 @@ class RegistrationTest1 extends RegistrationModule
 
   val email = "me@my.org"
   val password = "1234"
+
+  @Before def setup() {
+    reset(userDao, digester)
+  }
 
   @Test def userRegistrationShouldInsertARecordIntoDB() {
 

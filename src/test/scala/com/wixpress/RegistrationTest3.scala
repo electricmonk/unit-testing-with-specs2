@@ -29,9 +29,7 @@ class RegistrationTest3 extends SpecificationWithJUnit with Mockito with BeforeE
 
   "user registration" should {
     "insert a user into the database" in {
-      val request = RegistrationRequest(email = email, password = "")
-
-      registrar.register(request)
+      registrar.register(RegistrationRequest(email = email, password = ""))
 
       there was one(userDao).insert(User(email = email, digestedPassword = null))
     }

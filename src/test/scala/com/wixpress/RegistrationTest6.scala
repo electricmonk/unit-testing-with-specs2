@@ -15,7 +15,7 @@ import org.specs2.specification.Scope
 class RegistrationTest6 extends SpecificationWithJUnit with Mockito {
 
   trait Context extends Scope with RegistrationModule
-    with UserModuleSupport with CryptographyModuleSupport {
+  with UserModuleSupport with CryptographyModuleSupport {
 
     val registrar = new UserRegistrar {}
 

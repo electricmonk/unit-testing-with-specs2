@@ -13,7 +13,8 @@ trait UserModuleSupport extends UserModule with MocksCreation {
 
   def aUserWith(email: Matcher[String] = AlwaysMatcher(),
                 password: Matcher[String] = AlwaysMatcher()): Matcher[User] =
-    email ^^ {(u: User) => u.email}
+    email ^^ {(u: User) => u.email} and
+    password ^^ {(u: User) => u.digestedPassword}
 
 }
 
